@@ -4,8 +4,8 @@ inputs:
   pacticipant:
     description: The pacticipant name, i.e. consumer name
     required: true
-  version:
-    description: The pacticipant version
+  tag:
+    description: The pacticipant tag
     required: true
   to:
     description: The tag that represents the branch or environment of the integrated applications for which you want to check the verification result status.
@@ -18,7 +18,7 @@ runs:
     - can-i-deploy
     - --pacticipant
     - ${{ inputs.pacticipant }}
-    - --version
-    - ${{ inputs.version }}
+    - --latest
+    - ${{ inputs.tag }}
     - --to
     - ${{ inputs.to }}

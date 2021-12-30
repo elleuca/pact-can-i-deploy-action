@@ -4,7 +4,7 @@ This action uses [pact-cli](https://github.com/pact-foundation/pact-ruby-cli)
 docker image to perform an opinionated "can I deploy" check:
 
 ```console
-$ pact broker can-i-deploy --pacticipant <PACTICIPANT> --version <COMMIT_SHA> --to <ENVIRONMENT>
+$ pact broker can-i-deploy --pacticipant <PACTICIPANT> --latest <COMMIT_SHA> --to <ENVIRONMENT>
 ```
 
 ## Inputs
@@ -15,9 +15,9 @@ Action inputs are (hopefully) kept in sync with relation option of [`can-i-deplo
 
 **Required** The pacticipant name.
 
-### `version`
+### `tag`
 
-**Required** The pacticipant version.
+**Required** The pacticipant tag.
 
 ### `to`
 
@@ -44,14 +44,14 @@ Setup environment variable used by `pact-cli`.
 ```yml
 steps:
   # ...
-  - uses: casavo/pact-can-i-deploy-action@v1
+  - uses: elleuca/pact-can-i-deploy-action@v1
     env:
       PACT_BROKER_BASE_URL: ${{ secrets.PACT_BROKER_BASE_URL }}
       PACT_BROKER_PASSWORD: ${{ secrets.PACT_BROKER_PASSWORD }}
       PACT_BROKER_USERNAME: ${{ secrets.PACT_BROKER_USERNAME }}
     with:
       pacticipant: my-application
-      version: ${GITHUB_SHA}
+      tag: ${{github.sha}}
       to: staging
   # ...
 ```
