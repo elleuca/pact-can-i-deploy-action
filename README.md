@@ -51,7 +51,7 @@ steps:
       PACT_BROKER_USERNAME: ${{ secrets.PACT_BROKER_USERNAME }}
     with:
       pacticipant: my-application
-      tag: ${{github.sha}}
+      tag: v0.1.0
       to: staging
   # ...
 ```
